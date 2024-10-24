@@ -1,0 +1,146 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Optionen</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <settings.templateLayout>
+                        <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:flexforms_template.templateLayout</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <itemsProcFunc>Extcode\Cart\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+                            <extKey>books</extKey>
+                            <pluginName>Books</pluginName>
+                            <renderType>selectSingle</renderType>
+                        </config>
+                    </settings.templateLayout>
+
+                    <settings.orderBy>
+                        <exclude>1</exclude>
+                        <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderBy</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0">
+                                    <label></label>
+                                    <value></value>
+                                </numIndex>
+                                <numIndex index="1">
+                                    <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderBy.tstamp</label>
+                                    <value>tstamp</value>
+                                </numIndex>
+                                <numIndex index="2">
+                                    <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderBy.sorting</label>
+                                    <value>sorting</value>
+                                </numIndex>
+                                <numIndex index="3">
+                                    <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderBy.crdate</label>
+                                    <value>crdate</value>
+                                </numIndex>
+                                <numIndex index="4">
+                                    <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderBy.title</label>
+                                    <value>title</value>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.orderBy>
+
+                    <settings.orderDirection>
+                        <exclude>1</exclude>
+                        <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderDirection</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0" type="array">
+                                    <label></label>
+                                    <value></value>
+                                </numIndex>
+                                <numIndex index="1">
+                                    <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderDirection.asc</label>
+                                    <value>asc</value>
+                                </numIndex>
+                                <numIndex index="2">
+                                    <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.orderDirection.desc</label>
+                                    <value>desc</value>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.orderDirection>
+
+                    <settings.limit>
+                        <exclude>1</exclude>
+                        <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.limit</label>
+                        <config>
+                            <type>input</type>
+                            <size>3</size>
+                            <max>3</max>
+                            <eval>int</eval>
+                            <checkbox>1</checkbox>
+                            <range>
+                                <lower>0</lower>
+                                <upper>100</upper>
+                            </range>
+                            <default>0</default>
+                        </config>
+                    </settings.limit>
+
+                    <settings.showPageUid>
+                        <exclude>1</exclude>
+                        <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.select.single_pid</label>
+                        <config>
+                            <type>group</type>
+                            <internal_type>db</internal_type>
+                            <allowed>pages</allowed>
+                            <size>1</size>
+                            <maxitems>1</maxitems>
+                            <minitems>0</minitems>
+                            <show_thumbs>1</show_thumbs>
+                            <wizards>
+                                <suggest>
+                                    <type>suggest</type>
+                                </suggest>
+                            </wizards>
+                        </config>
+                    </settings.showPageUid>
+
+                    <settings.categoriesList>
+                        <exclude>1</exclude>
+                        <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.categories</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectTree</renderType>
+                            <autoSizeMax>20</autoSizeMax>
+                            <foreign_table>sys_category</foreign_table>
+                            <foreign_table_where>AND sys_category.sys_language_uid IN (-1, 0) ORDER BY sys_category.title ASC
+                            </foreign_table_where>
+                            <maxitems>99</maxitems>
+                            <renderMode>tree</renderMode>
+                            <size>10</size>
+                            <treeConfig>
+                                <appearance>
+                                    <expandAll>1</expandAll>
+                                    <showHeader>1</showHeader>
+                                </appearance>
+                                <parentField>parent</parentField>
+                            </treeConfig>
+                        </config>
+                    </settings.categoriesList>
+
+                    <settings.listSubcategories>
+                        <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.subcategories</label>
+                        <config>
+                            <type>check</type>
+                        </config>
+                    </settings.listSubcategories>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

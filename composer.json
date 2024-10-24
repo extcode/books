@@ -1,0 +1,65 @@
+{
+    "name": "extcode/books",
+    "type": "typo3-cms-extension",
+    "description": "Book Extension",
+    "homepage": "https://www.extco.de",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "keywords": [
+        "TYPO3 CMS",
+        "books"
+    ],
+    "authors": [
+        {
+            "name": "Daniel Gohlke",
+            "email": "ext@extco.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/extcode/books/issues"
+    },
+    "autoload": {
+        "psr-4": {
+            "Extcode\\Books\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Extcode\\Books\\Tests\\": "Tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/cms-composer-installers": true,
+            "typo3/class-alias-loader": true
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "books",
+            "web-dir": ".build/web"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "typo3/cms-core": "^13.4",
+        "typo3/cms-extbase": "^13.4",
+        "typo3/cms-fluid": "^13.4"
+    },
+    "require-dev": {
+        "codappix/typo3-php-datasets": "^1.5",
+        "codeception/codeception": "^5.0",
+        "codeception/module-db": "^3.1",
+        "codeception/module-webdriver": "^4.0",
+        "friendsofphp/php-cs-fixer": "^3.16",
+        "helmich/typo3-typoscript-lint": "^3.1",
+        "phpstan/phpstan": "^1.10",
+        "typo3/cms-fluid-styled-content": "^13.4",
+        "typo3/cms-install": "^13.4",
+        "typo3/testing-framework": "^8.2"
+    }
+}

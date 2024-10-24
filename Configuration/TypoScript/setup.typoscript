@@ -1,0 +1,37 @@
+plugin {
+    tx_books {
+        settings {
+            showAction {
+                media {
+                    image {
+                        size {
+                            small {
+                                maxWidth = 100
+                                maxHeight =
+                            }
+                            medium {
+                                maxWidth = 300
+                                maxHeight =
+                            }
+                            large {
+                                maxWidth = 600
+                                maxHeight =
+                            }
+                        }
+                    }
+                }
+            }
+
+            listAction < .showAction
+        }
+    }
+
+    tx_books_books {
+        settings {
+            listAction {
+                grid.teaser.maxCharacters = 200
+                table.teaser.maxCharacters = 400
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:books="http://typo3.org/ns/Extcode/Books/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<script type="application/ld+json">
+<books:schema book="{book}" />
+</script>
+
+<div class="book-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <f:render partial="Book/Show/Image" arguments="{book: book}"/>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <f:render partial="Book/Show/Information" arguments="{book: book}"/>
+            </div>
+        </div>
+
+        <f:render partial="Book/Show/Description" arguments="{book: book}"/>
+
+        <f:render partial="Book/Show/RelatedBooks" arguments="{book: book}"/>
+    </div>
+</div>
+</html>

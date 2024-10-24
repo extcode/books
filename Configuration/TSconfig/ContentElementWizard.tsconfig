@@ -1,0 +1,30 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+    elements {
+        books {
+            iconIdentifier = ext-books-wizard-icon
+            title = LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.title
+            description = LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.description
+            tt_content_defValues {
+                CType = books_books
+            }
+        }
+
+        teaser_books {
+            iconIdentifier = ext-books-wizard-icon
+            title = LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.teaser_books.title
+            description = LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.teaser_books.description
+            tt_content_defValues {
+                CType = books_teaserbooks
+            }
+        }
+
+        single_books {
+            iconIdentifier = ext-books-wizard-icon
+            title = LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.single_book.title
+            description = LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.single_book.description
+            tt_content_defValues {
+                CType = books_singlebook
+            }
+        }
+    }
+}

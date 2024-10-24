@@ -1,0 +1,15 @@
+{
+  "name": "extcode/books-test",
+  "description": "Add a books test extension",
+  "type": "typo3-cms-extension",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "typo3/cms-core": "*",
+    "extcode/books": "@dev"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "books_test"
+    }
+  }
+}
