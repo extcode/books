@@ -56,6 +56,11 @@ lint:php83:
   variables:
     CONTAINER_IMAGE: php:8.3-alpine
 
+lint:php84:
+  <<: *lint_php
+  variables:
+    CONTAINER_IMAGE: php:8.4-alpine
+
 phpstan:analyse:
   image: $CI_REGISTRY/containers/phpunit-with-php-8.2:main
   stage: lint
@@ -94,13 +99,16 @@ test:phpunit.php82:
   <<: *test_php
   variables:
     CONTAINER_IMAGE: $CI_REGISTRY/containers/phpunit-with-php-8.2:main
-    COVERAGE: 0
 
 test:phpunit.php83:
   <<: *test_php
   variables:
     CONTAINER_IMAGE: $CI_REGISTRY/containers/phpunit-with-php-8.3:main
-    COVERAGE: 1
+
+test:phpunit.php84:
+  <<: *test_php
+  variables:
+    CONTAINER_IMAGE: $CI_REGISTRY/containers/phpunit-with-php-8.4:main
 
 .test_codeception: &test_codeception
   stage: test
@@ -136,6 +144,14 @@ test:codeception:php83:
     - test:codeception:php82
   variables:
     CONTAINER_IMAGE: $CI_REGISTRY/containers/codeception-with-php-8.3:main
+    GECKODRIVER_VERSION: v0.34.0
+
+test:codeception:php84:
+  <<: *test_codeception
+  needs:
+    - test:codeception:php83
+  variables:
+    CONTAINER_IMAGE: $CI_REGISTRY/containers/codeception-with-php-8.4:main
     GECKODRIVER_VERSION: v0.34.0
 
 documentation:

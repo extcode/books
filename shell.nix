@@ -134,6 +134,7 @@ let
       ./vendor/bin/codecept run
 
       pgrep -f "php -S" | xargs -r kill
+      pgrep -f "geckodriver" | xargs -r kill
     '';
   };
 
@@ -155,8 +156,6 @@ in pkgs.mkShell {
   packages = [ pkgs.gnumake pkgs.busybox ];
 
   shellHook = ''
-    export TMPDIR=$HOME/.cache/development/books
-
     export PROJECT_ROOT="$(pwd)"
 
     export typo3DatabaseDriver=pdo_sqlite
