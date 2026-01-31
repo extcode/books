@@ -1,0 +1,13 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#3 \$view of class Extcode\\Books\\Event\\View\\ModifyViewEvent constructor expects TYPO3Fluid\\Fluid\\View\\ViewInterface, TYPO3\\CMS\\Core\\View\\ViewInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ../Classes/Controller/ActionController.php
+
+		-
+			message: '#^Access to an undefined property Extcode\\Books\\Hooks\\DataHandler\:\:\$cacheManager\.$#'
+			identifier: property.notFound
+			count: 1
+			path: ../Classes/Hooks/DataHandler.php

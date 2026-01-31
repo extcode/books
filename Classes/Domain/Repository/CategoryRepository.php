@@ -16,13 +16,6 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class CategoryRepository extends Repository
 {
-    public function findAllAsRecursiveTreeArray(?Category $selectedCategory = null): array
-    {
-        $categoriesArray = $this->findAllAsArray($selectedCategory);
-
-        return $this->buildSubcategories($categoriesArray, null);
-    }
-
     public function findAllAsArray(?Category $selectedCategory = null): array
     {
         $categories = [];
@@ -78,21 +71,5 @@ class CategoryRepository extends Repository
                 );
             }
         }
-    }
-
-    protected function buildSubcategories(array $categoriesArray, array $parentCategory): array
-    {
-        $categories = null;
-
-        foreach ($categoriesArray as $category) {
-            if ($category['parent'] == $parentCategory['uid']) {
-                $newCategory = $category;
-                $newCategory['subcategories']
-                    = $this->buildSubcategories($categoriesArray, $category);
-                $categories[] = $newCategory;
-            }
-        }
-
-        return $categories;
     }
 }

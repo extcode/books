@@ -4,35 +4,35 @@ declare(strict_types=1);
 
 namespace Extcode\Books\ViewHelpers\Link;
 
-use Extcode\Books\Domain\Model\Book;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\MathUtility;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
-use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
-use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
-
 /*
  * This file is part of the package extcode/books.
  *
  * For the full copyright and license information, please read the
  * LICENSE file that was distributed with this source code.
  */
+
+use Extcode\Books\Domain\Model\Book;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Utility\MathUtility;
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
+use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+
 class BookViewHelper extends AbstractTagBasedViewHelper
 {
-    /**
-     * @var string
-     */
     protected $tagName = 'a';
+
+    public function __construct(
+        private readonly UriBuilder $uriBuilder
+    ) {
+        parent::__construct();
+    }
 
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerUniversalTagAttributes();
-        $this->registerTagAttribute('name', 'string', 'Specifies the name of an anchor');
-        $this->registerTagAttribute('rel', 'string', 'Specifies the relationship between the current document and the linked document');
-        $this->registerTagAttribute('rev', 'string', 'Specifies the relationship between the linked document and the current document');
-        $this->registerTagAttribute('target', 'string', 'Specifies where to open the linked document');
+
         $this->registerArgument('action', 'string', 'Target action');
         $this->registerArgument('controller', 'string', 'Target controller. If NULL current controllerName is used');
         $this->registerArgument('extensionName', 'string', 'Target Extension Name (without `tx_` prefix and no underscores). If NULL the current extension name is used');
@@ -57,7 +57,8 @@ class BookViewHelper extends AbstractTagBasedViewHelper
     {
         /** @var RenderingContext $renderingContext */
         $renderingContext = $this->renderingContext;
-        $request = $renderingContext->getRequest();
+        $renderingContext->hasAttribute(ServerRequestInterface::class);
+        $request = $renderingContext->getAttribute(ServerRequestInterface::class);
         if (!$request instanceof RequestInterface) {
             throw new \RuntimeException(
                 'ViewHelper f:link.action can be used only in extbase context and needs a request implementing extbase RequestInterface.',
@@ -96,7 +97,7 @@ class BookViewHelper extends AbstractTagBasedViewHelper
 
         $parameters = $this->arguments['arguments'];
 
-        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $uriBuilder = $this->uriBuilder;
         $uriBuilder
             ->reset()
             ->setRequest($request)

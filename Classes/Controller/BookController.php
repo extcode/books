@@ -11,10 +11,12 @@ namespace Extcode\Books\Controller;
  * LICENSE file that was distributed with this source code.
  */
 
+use Extcode\Books\Domain\Model\Category;
 use Extcode\Books\Domain\Model\Dto\BookDemand;
 use Extcode\Books\Domain\Repository\BookRepository;
 use Extcode\Books\Domain\Repository\CategoryRepository;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
@@ -35,7 +37,7 @@ class BookController extends ActionController
             static $cacheTagsSet = false;
 
             if (!$cacheTagsSet) {
-                $GLOBALS['TSFE']->addCacheTags(['tx_books']);
+                $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_books', 3600));
                 $cacheTagsSet = true;
             }
         }
@@ -161,6 +163,10 @@ class BookController extends ActionController
             if ($this->settings['listSubcategories']) {
                 foreach ($selectedCategories as $selectedCategory) {
                     $category = $this->categoryRepository->findByUid($selectedCategory);
+                    if (($category instanceof Category) === false) {
+                        continue;
+                    }
+
                     $categories = array_merge(
                         $categories,
                         $this->categoryRepository->findSubcategoriesRecursiveAsArray($category)

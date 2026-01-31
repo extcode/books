@@ -41,11 +41,6 @@ class BookRepositoryTest extends FunctionalTestCase
         $this->importPHPDataSet(__DIR__ . '/../../../Fixtures/BooksDatabase.php');
     }
 
-    public function tearDown(): void
-    {
-        unset($this->bookRepository);
-    }
-
     #[Test]
     public function findRecordsByUid(): void
     {
