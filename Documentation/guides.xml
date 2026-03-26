@@ -11,7 +11,7 @@
                interlink-shortcode="extcode/books"
     />
     <project title="Books"
-             release="1.0.0"
+             release="1.0.1"
              version="1.0"
              copyright="2024 - 2027"
     />
