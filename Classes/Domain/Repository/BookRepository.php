@@ -83,12 +83,12 @@ class BookRepository extends Repository
 
         if (!empty($orderList)) {
             foreach ($orderList as $orderItem) {
-                [$orderField, $ascDesc] =
-                    GeneralUtility::trimExplode(' ', $orderItem, true);
+                [$orderField, $ascDesc]
+                    = GeneralUtility::trimExplode(' ', $orderItem, true);
                 if ($ascDesc) {
-                    $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
-                        QueryInterface::ORDER_DESCENDING :
-                        QueryInterface::ORDER_ASCENDING);
+                    $orderings[$orderField] = ((strtolower($ascDesc) === 'desc')
+                        ? QueryInterface::ORDER_DESCENDING
+                        : QueryInterface::ORDER_ASCENDING);
                 } else {
                     $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                 }

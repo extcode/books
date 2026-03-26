@@ -23,9 +23,9 @@ if ($categoryRestrictionSetting) {
 
     // prepend category restriction at the beginning of foreign_table_where
     if (!empty($categoryRestriction)) {
-        $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['category']['config']['foreign_table_where'] = $categoryRestriction .
-            $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['category']['config']['foreign_table_where'];
-        $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction .
-            $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['categories']['config']['foreign_table_where'];
+        $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['category']['config']['foreign_table_where'] = $categoryRestriction
+            . $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['category']['config']['foreign_table_where'];
+        $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['categories']['config']['foreign_table_where'] = $categoryRestriction
+            . $GLOBALS['TCA']['tx_books_domain_model_book']['columns']['categories']['config']['foreign_table_where'];
     }
 }
