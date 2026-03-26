@@ -49,8 +49,8 @@ class CategoryRepository extends Repository
         $localCategories = $this->findAllAsArray();
         foreach ($localCategories as $category) {
             if (
-                !$parentCategory ||
-                $category['uid'] === $parentCategory->getUid()
+                !$parentCategory
+                || $category['uid'] === $parentCategory->getUid()
             ) {
                 $this->getSubcategoriesIds(
                     $localCategories,
@@ -87,8 +87,8 @@ class CategoryRepository extends Repository
         foreach ($categoriesArray as $category) {
             if ($category['parent'] == $parentCategory['uid']) {
                 $newCategory = $category;
-                $newCategory['subcategories'] =
-                    $this->buildSubcategories($categoriesArray, $category);
+                $newCategory['subcategories']
+                    = $this->buildSubcategories($categoriesArray, $category);
                 $categories[] = $newCategory;
             }
         }

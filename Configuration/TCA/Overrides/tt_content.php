@@ -13,37 +13,43 @@ call_user_func(function () {
 
     $pluginNames = [
         'Books' => [
+            'additionalNewFields' => 'pages',
             'iconIdentifier' => 'ext-books-wizard-icon',
-            'showitem' => 'pi_flexform, pages',
+            'translationKeyPrefix' => $_LLL_be . 'tx_books.plugin.books',
         ],
         'SingleBook' => [
             'iconIdentifier' => 'ext-books-wizard-icon',
-            'showitem' => 'pi_flexform',
+            'translationKeyPrefix' => $_LLL_be . 'tx_cartproducts.plugin.single_book',
         ],
         'TeaserBooks' => [
             'iconIdentifier' => 'ext-books-wizard-icon',
-            'showitem' => 'pi_flexform',
+            'translationKeyPrefix' => $_LLL_be . 'tx_cartproducts.plugin.teaser_books',
         ],
     ];
 
-    foreach ($pluginNames as $pluginName => $pluginConfig) {
-        $pluginSignature = 'books_' . strtolower($pluginName);
-        $pluginNameSC = strtolower((string)preg_replace('/[A-Z]/', '_$0', lcfirst($pluginName)));
-        ExtensionUtility::registerPlugin(
-            'Books',
+    foreach ($pluginNames as $pluginName => $pluginConf) {
+        $pluginSignature = ExtensionUtility::registerPlugin(
+            'books',
             $pluginName,
-            $_LLL_be . ':tx_books.plugin.' . $pluginNameSC . '.title',
-            $pluginConfig['iconIdentifier']
+            $pluginConf['translationKeyPrefix'] . '.title',
+            $pluginConf['iconIdentifier'],
+            'plugins',
+            $pluginConf['translationKeyPrefix'] . '.description',
         );
 
         $flexFormPath = 'EXT:books/Configuration/FlexForms/' . $pluginName . 'Plugin.xml';
         if (file_exists(GeneralUtility::getFileAbsFileName($flexFormPath))) {
-            $GLOBALS['TCA']['tt_content']['types'][$pluginSignature]['showitem'] = $pluginConfig['showitem'];
+            ExtensionManagementUtility::addToAllTCAtypes(
+                'tt_content',
+                rtrim('--div--;Configuration,pi_flexform,' . ($pluginConf['additionalNewFields'] ?? ''), ','),
+                $pluginSignature,
+                'after:subheader',
+            );
 
             ExtensionManagementUtility::addPiFlexFormValue(
                 '*',
                 'FILE:' . $flexFormPath,
-                $pluginSignature
+                $pluginSignature,
             );
         }
     }

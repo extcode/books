@@ -31,6 +31,8 @@
         }
     },
     "config": {
+        "bin-dir": ".build/bin",
+        "vendor-dir": ".build/vendor",
         "allow-plugins": {
             "typo3/cms-composer-installers": true,
             "typo3/class-alias-loader": true
@@ -39,11 +41,11 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "books",
-            "web-dir": ".build/web"
+            "web-dir": ".build/public"
         }
     },
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
         "ext-json": "*",
         "ext-pdo": "*",
         "typo3/cms-core": "^13.4",
@@ -51,7 +53,7 @@
         "typo3/cms-fluid": "^13.4"
     },
     "require-dev": {
-        "codappix/typo3-php-datasets": "^1.5",
+        "codappix/typo3-php-datasets": "^2.1",
         "codeception/codeception": "^5.0",
         "codeception/module-db": "^3.1",
         "codeception/module-webdriver": "^4.0",

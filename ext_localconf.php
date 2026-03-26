@@ -48,8 +48,8 @@ ExtensionUtility::configurePlugin(
 
 // clearCachePostProc Hook
 
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['books_clearcache'] =
-    DataHandler::class . '->clearCachePostProc';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostProc']['books_clearcache']
+    = DataHandler::class . '->clearCachePostProc';
 
 // register "books:" namespace
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['books'][]

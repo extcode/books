@@ -116,8 +116,8 @@ class BookController extends ActionController
         );
 
         if (
-            isset($this->settings['view'][$type]) &&
-            is_array($this->settings['view'][$type])
+            isset($this->settings['view'][$type])
+            && is_array($this->settings['view'][$type])
         ) {
             // Use default TypoScript settings for plugin configuration
             $limit = (int)$this->settings['view'][$type]['limit'];

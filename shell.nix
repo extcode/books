@@ -23,7 +23,8 @@ let
       composer
     ];
     text = ''
-      composer update --prefer-dist --no-progress
+      rm -rf .build/ composer.lock
+      composer update --prefer-dist --no-progress --working-dir="$PROJECT_ROOT"
     '';
   };
 
@@ -35,7 +36,7 @@ let
     ];
 
     text = ''
-      ./vendor/bin/phpstan analyse -c Build/phpstan.neon --memory-limit 256M
+      ./.build/bin/phpstan analyse -c Build/phpstan.neon --memory-limit 256M
     '';
   };
 
@@ -47,7 +48,7 @@ let
     ];
 
     text = ''
-      ./vendor/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php -v --dry-run --diff
+      ./.build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php -v --dry-run --diff
     '';
   };
 
@@ -59,7 +60,7 @@ let
     ];
 
     text = ''
-      ./vendor/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
+      ./build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
     '';
   };
 
@@ -83,7 +84,7 @@ let
     ];
 
     text = ''
-      ./vendor/bin/typoscript-lint -c Build/typoscriptlint.yaml Configuration
+      ./.build/bin/typoscript-lint -c Build/typoscriptlint.yaml Configuration
     '';
   };
 
@@ -95,7 +96,7 @@ let
     ];
     text = ''
       project-install
-      vendor/bin/phpunit -c Build/UnitTests.xml
+      ./.build/bin/phpunit -c Build/UnitTests.xml
     '';
   };
 
@@ -107,7 +108,7 @@ let
     ];
     text = ''
       project-install
-      vendor/bin/phpunit -c Build/FunctionalTests.xml
+      ./.build/bin/phpunit -c Build/FunctionalTests.xml
     '';
   };
 
@@ -124,16 +125,17 @@ let
     text = ''
       project-install
 
-      mkdir -p "$PROJECT_ROOT/.build/web/typo3temp/var/tests/acceptance"
-      mkdir -p "$PROJECT_ROOT/.build/web/typo3temp/var/tests/acceptance-logs"
-      mkdir -p "$PROJECT_ROOT/.build/web/typo3temp/var/tests/acceptance-reports"
-      mkdir -p "$PROJECT_ROOT/.build/web/typo3temp/var/tests/acceptance-sqlite-dbs"
+      mkdir -p "$PROJECT_ROOT/.build/public/typo3temp/var/tests/acceptance"
+      mkdir -p "$PROJECT_ROOT/.build/public/typo3temp/var/tests/acceptance-logs"
+      mkdir -p "$PROJECT_ROOT/.build/public/typo3temp/var/tests/acceptance-reports"
+      mkdir -p "$PROJECT_ROOT/.build/public/typo3temp/var/tests/acceptance-sqlite-dbs"
 
-      export INSTANCE_PATH="$PROJECT_ROOT/.build/web/typo3temp/var/tests/acceptance"
+      export INSTANCE_PATH="$PROJECT_ROOT/.build/public/typo3temp/var/tests/acceptance"
 
-      ./vendor/bin/codecept run
+      ./.build/bin/codecept run
 
       pgrep -f "php -S" | xargs -r kill
+      pgrep -f "geckodriver" | xargs -r kill
     '';
   };
 
@@ -155,8 +157,6 @@ in pkgs.mkShell {
   packages = [ pkgs.gnumake pkgs.busybox ];
 
   shellHook = ''
-    export TMPDIR=$HOME/.cache/development/books
-
     export PROJECT_ROOT="$(pwd)"
 
     export typo3DatabaseDriver=pdo_sqlite
