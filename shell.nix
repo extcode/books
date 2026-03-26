@@ -28,18 +28,6 @@ let
     '';
   };
 
-  projectPhpstan = pkgs.writeShellApplication {
-    name = "project-phpstan";
-
-    runtimeInputs = [
-      php
-    ];
-
-    text = ''
-      ./.build/bin/phpstan analyse -c Build/phpstan.neon --memory-limit 256M
-    '';
-  };
-
   projectCgl = pkgs.writeShellApplication {
     name = "project-cgl";
 
@@ -64,8 +52,8 @@ let
     '';
   };
 
-  projectLintPhp = pkgs.writeShellApplication {
-    name = "project-lint-php";
+  projectLint = pkgs.writeShellApplication {
+    name = "project-lint";
 
     runtimeInputs = [
       php
@@ -88,6 +76,18 @@ let
     '';
   };
 
+  projectPhpstan = pkgs.writeShellApplication {
+    name = "project-phpstan";
+
+    runtimeInputs = [
+      php
+    ];
+
+    text = ''
+      ./.build/bin/phpstan analyse -c Build/phpstan.neon --memory-limit 256M
+    '';
+  };
+
   projectTestUnit = pkgs.writeShellApplication {
     name = "project-test-unit";
     runtimeInputs = [
@@ -96,7 +96,7 @@ let
     ];
     text = ''
       project-install
-      ./.build/bin/phpunit -c Build/UnitTests.xml
+      ./.build/bin/phpunit -c Build/phpunit.xml.dist --testsuite unit --display-deprecations --display-warnings --display-errors
     '';
   };
 
@@ -108,7 +108,19 @@ let
     ];
     text = ''
       project-install
-      ./.build/bin/phpunit -c Build/FunctionalTests.xml
+      ./.build/bin/phpunit -c Build/phpunit.xml.dist --testsuite functional --display-deprecations --display-warnings --display-errors
+    '';
+  };
+
+  projectTestWithCoverage = pkgs.writeShellApplication {
+    name = "project-test-with-coverage";
+    runtimeInputs = [
+      php
+      projectInstall
+    ];
+    text = ''
+      project-install
+      XDEBUG_MODE=coverage ./.build/bin/phpunit -c Build/phpunit.xml.dist --coverage-html=coverage_result
     '';
   };
 
@@ -140,21 +152,21 @@ let
   };
 
 in pkgs.mkShell {
-  name = "TYPO3 Extension books";
+  name = "TYPO3 Extension extcode/books";
   buildInputs = [
     php
     composer
     projectInstall
-    projectPhpstan
     projectCgl
     projectCglFix
-    projectLintPhp
+    projectLint
     projectLintTypoScript
+    projectPhpstan
     projectTestUnit
     projectTestFunctional
+    projectTestWithCoverage
     projectTestAcceptance
   ];
-  packages = [ pkgs.gnumake pkgs.busybox ];
 
   shellHook = ''
     export PROJECT_ROOT="$(pwd)"

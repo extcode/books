@@ -18,8 +18,7 @@ ExtensionUtility::configurePlugin(
     ],
     [
         BookController::class => '',
-    ],
-    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    ]
 );
 
 ExtensionUtility::configurePlugin(
@@ -30,8 +29,7 @@ ExtensionUtility::configurePlugin(
     ],
     [
         BookController::class => '',
-    ],
-    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    ]
 );
 
 ExtensionUtility::configurePlugin(
@@ -42,8 +40,7 @@ ExtensionUtility::configurePlugin(
     ],
     [
         BookController::class => '',
-    ],
-    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+    ]
 );
 
 // clearCachePostProc Hook

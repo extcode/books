@@ -11,6 +11,7 @@ namespace Extcode\Books\Domain\Model;
  * LICENSE file that was distributed with this source code.
  */
 
+use DateTime;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
@@ -46,7 +47,7 @@ class Book extends AbstractEntity implements BookInterface
 
     protected string $numberOfPages = '';
 
-    protected \DateTime $dateOfPublication;
+    protected DateTime $dateOfPublication;
 
     protected string $genre = '';
 
@@ -82,6 +83,11 @@ class Book extends AbstractEntity implements BookInterface
     protected string $metaDescription = '';
 
     public function __construct()
+    {
+        $this->initStorageObjects();
+    }
+
+    protected function initStorageObjects(): void
     {
         $this->categories = new ObjectStorage();
         $this->files = new ObjectStorage();
@@ -160,7 +166,7 @@ class Book extends AbstractEntity implements BookInterface
         return $this->numberOfPages;
     }
 
-    public function getDateOfPublication(): \DateTime
+    public function getDateOfPublication(): DateTime
     {
         return $this->dateOfPublication;
     }
