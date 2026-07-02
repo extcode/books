@@ -16,7 +16,10 @@ namespace Extcode\Books\Hooks;
  */
 class DataHandler
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
+
     /**
      * Flushes the cache if a news record was edited.
      * This happens on two levels: by UID and by PID.

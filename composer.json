@@ -34,12 +34,14 @@
         "bin-dir": ".build/bin",
         "vendor-dir": ".build/vendor",
         "allow-plugins": {
+            "a9f/fractor-extension-installer": true,
+            "phpstan/extension-installer": true,
             "typo3/cms-composer-installers": true,
-            "typo3/class-alias-loader": true,
-            "phpstan/extension-installer": true
-        }
+            "typo3/class-alias-loader": true
+        },
+        "lock": false,
+        "sort-packages": true
     },
-    "version": "2.0.0",
     "extra": {
         "typo3/cms": {
             "extension-key": "books",
@@ -50,17 +52,19 @@
         "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
         "ext-json": "*",
         "ext-pdo": "*",
-        "typo3/cms-core": "^14.1",
-        "typo3/cms-extbase": "^14.1",
-        "typo3/cms-fluid": "^14.1"
+        "typo3/cms-core": "^14.3",
+        "typo3/cms-extbase": "^14.3",
+        "typo3/cms-fluid": "^14.3"
     },
     "require-dev": {
         "codappix/typo3-php-datasets": "^2.1",
         "codeception/codeception": "^5.0",
         "codeception/module-db": "^3.1",
         "codeception/module-webdriver": "^4.0",
+        "erickskrauch/php-cs-fixer-custom-fixers": "*",
         "friendsofphp/php-cs-fixer": "^3.16",
         "helmich/typo3-typoscript-lint": "^3.1",
+        "kubawerlos/php-cs-fixer-custom-fixers": "*",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-deprecation-rules": "^2.0",
@@ -70,6 +74,7 @@
         "typo3/cms-fluid-styled-content": "^14.1",
         "typo3/cms-install": "^14.1",
         "typo3/testing-framework": "^9.3",
-        "ssch/typo3-rector": "^3.11"
+        "ssch/typo3-rector": "^3.11",
+        "a9f/typo3-fractor": "^0.5.11"
     }
 }

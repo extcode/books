@@ -29,18 +29,7 @@ class BookController extends ActionController
     public function __construct(
         protected readonly BookRepository $bookRepository,
         protected readonly CategoryRepository $categoryRepository
-    ) {}
-
-    protected function initializeAction(): void
-    {
-        if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            static $cacheTagsSet = false;
-
-            if (!$cacheTagsSet) {
-                $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_books', 3600));
-                $cacheTagsSet = true;
-            }
-        }
+    ) {
     }
 
     public function listAction(int $currentPage = 1): ResponseInterface
@@ -51,7 +40,7 @@ class BookController extends ActionController
         $demand = $this->createDemandObjectFromSettings('list');
         $demand->setActionAndClass(__METHOD__, self::class);
 
-        $itemsPerPage = (int)($this->settings['itemsPerPage'] ?? 20);
+        $itemsPerPage = (int) ($this->settings['itemsPerPage'] ?? 20);
 
         $books = $this->bookRepository->findDemanded($demand);
         $arrayPaginator = new QueryResultPaginator(
@@ -78,7 +67,7 @@ class BookController extends ActionController
 
     public function teaserAction(): ResponseInterface
     {
-        $limit = (int)$this->settings['limit'] ?: (int)$this->configurationManager->getConfiguration(
+        $limit = (int) $this->settings['limit'] ?: (int) $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
             'Books'
         )['view']['list']['limit'];
@@ -111,6 +100,18 @@ class BookController extends ActionController
         return $this->htmlResponse();
     }
 
+    protected function initializeAction(): void
+    {
+        if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+            static $cacheTagsSet = false;
+
+            if (!$cacheTagsSet) {
+                $this->request->getAttribute('frontend.cache.collector')->addCacheTags(new CacheTag('tx_books', 3600));
+                $cacheTagsSet = true;
+            }
+        }
+    }
+
     protected function createDemandObjectFromSettings(string $type): BookDemand
     {
         $demand = GeneralUtility::makeInstance(
@@ -122,13 +123,13 @@ class BookController extends ActionController
             && is_array($this->settings['view'][$type])
         ) {
             // Use default TypoScript settings for plugin configuration
-            $limit = (int)$this->settings['view'][$type]['limit'];
+            $limit = (int) $this->settings['view'][$type]['limit'];
             $orderBy = $this->settings['view'][$type]['orderBy'];
             $orderDirection = $this->settings['view'][$type]['orderDirection'];
         }
 
-        if (isset($this->settings['limit']) && (int)$this->settings['limit'] > 0) {
-            $limit = (int)$this->settings['limit'];
+        if (isset($this->settings['limit']) && (int) $this->settings['limit'] > 0) {
+            $limit = (int) $this->settings['limit'];
         }
         if (isset($limit) && $limit > 0) {
             $demand->setLimit($limit);
@@ -140,7 +141,7 @@ class BookController extends ActionController
         if (isset($this->settings['orderDirection']) && !empty($this->settings['orderDirection'])) {
             $orderDirection = $this->settings['orderDirection'];
         }
-        if (isset($orderBy) && isset($orderDirection)) {
+        if (isset($orderBy, $orderDirection)) {
             $demand->setOrder($orderBy . ' ' . $orderDirection);
         }
 

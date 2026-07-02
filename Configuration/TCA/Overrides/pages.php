@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 defined('TYPO3') or die();
 
-call_user_func(function () {
+(static function (): void {
     $_LLL_be = 'LLL:EXT:books/Resources/Private/Language/locallang_be.xlf';
 
     $GLOBALS['TCA']['pages']['columns']['doktype']['config']['items'][] = [
@@ -20,4 +20,4 @@ call_user_func(function () {
 
     $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes'][188] = 'apps-pagetree-page-books-book';
     $GLOBALS['TCA']['pages']['ctrl']['typeicon_classes']['contains-books'] = 'apps-pagetree-folder-books-books';
-});
+})();

@@ -32,7 +32,8 @@ Sometimes minor versions also result in minor adjustments to own templates or co
 
 | Books | TYPO3 | PHP  | Support/Development                  |
 |-------|-------|------|--------------------------------------|
-| 1.x.x | 13.4  | 8.2+ | Features, Bugfixes, Security Updates |
+| 2.x.x | 14.2  | 8.2+ | Features, Bugfixes, Security Updates |
+| 1.x.x | 13.4  | 8.2+ | Bugfixes, Security Updates           |
 
 If you need extended support for features and bug fixes outside of the currently supported versions,
 we are happy to offer paid services.
@@ -46,7 +47,7 @@ Please have a look into the [official extension documentation in changelog chapt
 News uses **semantic versioning** which basically means for you, that
 - **bugfix updates** (e.g. 1.0.0 => 1.0.1) just includes small bugfixes or security relevant stuff without breaking changes.
 - **minor updates** (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks without breaking changes.
-- **major updates** (e.g. 1.0.0 => 2.0.0) breaking changes wich can be refactorings, features or bugfixes.
+- **major updates** (e.g. 1.0.0 => 2.0.0) breaking changes which can be refactorings, features or bugfixes.
 
 ## 4. Sponsoring
 

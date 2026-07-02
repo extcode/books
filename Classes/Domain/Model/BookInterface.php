@@ -11,6 +11,7 @@ namespace Extcode\Books\Domain\Model;
  * LICENSE file that was distributed with this source code.
  */
 
+use DateTime;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -44,7 +45,7 @@ interface BookInterface
 
     public function getNumberOfPages(): string;
 
-    public function getDateOfPublication(): \DateTime;
+    public function getDateOfPublication(): DateTime;
 
     public function getGenre(): string;
 
