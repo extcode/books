@@ -60,7 +60,7 @@ let
     ];
 
     text = ''
-      ./build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
+      ./.build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
     '';
   };
 
