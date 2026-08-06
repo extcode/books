@@ -138,7 +138,7 @@ return [
         ],
         'endtime' => [
             'exclude' => 1,
-            'label' => 'LLL' . ':EXT:lang/locallang_general.xlf:LGL.endtime',
+            'label' => $_LLL_general . ':LGL.endtime',
             'config' => [
                 'type' => 'datetime',
                 'size' => 13,
@@ -368,7 +368,7 @@ return [
 
         'related_books' => [
             'exclude' => 1,
-            'label' => $_LLL_db . 'tx_books_domain_model_book.related_books',
+            'label' => $_LLL_db . ':tx_books_domain_model_book.related_books',
             'config' => [
                 'type' => 'group',
                 'allowed' => 'tx_books_domain_model_book',
@@ -388,7 +388,7 @@ return [
 
         'related_books_from' => [
             'exclude' => 1,
-            'label' => $_LLL_db . 'tx_books_domain_model_book.related_books_from',
+            'label' => $_LLL_db . ':tx_books_domain_model_book.related_books_from',
             'config' => [
                 'type' => 'group',
                 'foreign_table' => 'tx_books_domain_model_book',
