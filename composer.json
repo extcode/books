@@ -62,6 +62,7 @@
         "codeception/module-db": "^3.1",
         "codeception/module-webdriver": "^4.0",
         "erickskrauch/php-cs-fixer-custom-fixers": "*",
+        "extcode/testing-framework": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.16",
         "helmich/typo3-typoscript-lint": "^3.1",
         "kubawerlos/php-cs-fixer-custom-fixers": "*",
@@ -73,7 +74,6 @@
         "staabm/phpstan-todo-by": "^0.3",
         "typo3/cms-fluid-styled-content": "^14.1",
         "typo3/cms-install": "^14.1",
-        "typo3/testing-framework": "^9.3",
         "ssch/typo3-rector": "^3.11",
         "a9f/typo3-fractor": "^0.5.11"
     }

@@ -22,6 +22,9 @@ class CategoryRepository extends Repository
 
         $localCategories = $this->findAll();
         foreach ($localCategories as $localCategory) {
+            if (($localCategory instanceof Category) === false) {
+                continue;
+            }
             $newCategory = [
                 'uid' => $localCategory->getUid(),
                 'title' => $localCategory->getTitle(),

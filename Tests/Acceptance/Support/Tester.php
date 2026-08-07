@@ -13,7 +13,6 @@ namespace Extcode\Books\Tests\Acceptance\Support;
 
 use Codeception\Actor;
 use Extcode\Books\Tests\Acceptance\Support\_generated\TesterActions;
-use TYPO3\TestingFramework\Core\Acceptance\Step\FrameSteps;
 
 /**
  * @method void wantToTest($text)
@@ -29,8 +28,6 @@ use TYPO3\TestingFramework\Core\Acceptance\Step\FrameSteps;
  */
 class Tester extends Actor
 {
-    use FrameSteps;
-
     use TesterActions;
 
     protected int $retryNum = 2;
