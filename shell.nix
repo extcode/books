@@ -60,7 +60,7 @@ let
     ];
 
     text = ''
-      ./build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
+      ./.build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
     '';
   };
 
@@ -142,6 +142,7 @@ let
 in pkgs.mkShell {
   name = "TYPO3 Extension books";
   buildInputs = [
+    pkgs.cacert
     php
     composer
     projectInstall

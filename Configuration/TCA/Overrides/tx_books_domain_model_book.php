@@ -7,8 +7,6 @@ defined('TYPO3') or die();
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-$_LLL_db = 'LLL:EXT:books/Resources/Private/Language/locallang_db.xlf';
-
 // category restriction based on settings in extension manager
 $categoryRestrictionSetting = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('books', 'categoryRestriction');
 
