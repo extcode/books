@@ -19,11 +19,11 @@ call_user_func(function () {
         ],
         'SingleBook' => [
             'iconIdentifier' => 'ext-books-wizard-icon',
-            'translationKeyPrefix' => $_LLL_be . ':tx_cartproducts.plugin.single_book',
+            'translationKeyPrefix' => $_LLL_be . ':tx_books.plugin.single_book',
         ],
         'TeaserBooks' => [
             'iconIdentifier' => 'ext-books-wizard-icon',
-            'translationKeyPrefix' => $_LLL_be . ':tx_cartproducts.plugin.teaser_books',
+            'translationKeyPrefix' => $_LLL_be . ':tx_books.plugin.teaser_books',
         ],
     ];
 
