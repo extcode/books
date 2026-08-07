@@ -24,7 +24,7 @@
                             <type>input</type>
                             <size>3</size>
                             <max>3</max>
-                            <eval>int</eval>
+                            <eval>num</eval>
                             <checkbox>1</checkbox>
                             <range>
                                 <lower>0</lower>
@@ -39,7 +39,6 @@
                         <label>LLL:EXT:books/Resources/Private/Language/locallang_be.xlf:tx_books.plugin.books.action.book.list.select.single_pid</label>
                         <config>
                             <type>group</type>
-                            <internal_type>db</internal_type>
                             <allowed>pages</allowed>
                             <size>1</size>
                             <maxitems>1</maxitems>
@@ -59,7 +58,6 @@
                         <config>
                             <type>select</type>
                             <renderType>selectMultipleSideBySide</renderType>
-                            <enableMultiSelectFilterTextfield>1</enableMultiSelectFilterTextfield>
                             <foreign_table>tx_books_domain_model_book</foreign_table>
                             <size>3</size>
                             <minitems>1</minitems>
