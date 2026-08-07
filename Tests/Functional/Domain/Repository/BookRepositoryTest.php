@@ -13,6 +13,7 @@ namespace Extcode\Books\Tests\Functional\Domain\Repository;
 
 use Codappix\Typo3PhpDatasets\TestingFramework;
 use Extcode\Books\Domain\Model\Book;
+use Extcode\Books\Domain\Model\Dto\BookDemand;
 use Extcode\Books\Domain\Repository\BookRepository;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
@@ -75,5 +76,58 @@ class BookRepositoryTest extends FunctionalTestCase
         $this->bookRepository->setDefaultQuerySettings($querySettings);
         $books = $this->bookRepository->findAll();
         self::assertCount(3, $books);
+    }
+
+    #[Test]
+    public function findDemandedRecordsByTitle(): void
+    {
+        $books = $this->bookRepository->findAll();
+        self::assertCount(0, $books);
+
+        $querySettings = $this->bookRepository->createQuery()->getQuerySettings();
+        $querySettings->setRespectStoragePage(false);
+        $this->bookRepository->setDefaultQuerySettings($querySettings);
+
+        $bookDemand = new BookDemand();
+        $bookDemand->setTitle('1793');
+
+        $books = $this->bookRepository->findDemanded($bookDemand);
+        self::assertCount(1, $books);
+        self::assertSame(2, $books[0]->getUid());
+    }
+
+    #[Test]
+    public function findDemandedRecordsByPartOfTitle(): void
+    {
+        $books = $this->bookRepository->findAll();
+        self::assertCount(0, $books);
+
+        $querySettings = $this->bookRepository->createQuery()->getQuerySettings();
+        $querySettings->setRespectStoragePage(false);
+        $this->bookRepository->setDefaultQuerySettings($querySettings);
+
+        $bookDemand = new BookDemand();
+        $bookDemand->setTitle('oo');
+
+        $books = $this->bookRepository->findDemanded($bookDemand);
+        self::assertCount(1, $books);
+        self::assertSame(3, $books[0]->getUid());
+    }
+
+    #[Test]
+    public function findDemandedRecordsByPartOfTitleNotMatching(): void
+    {
+        $books = $this->bookRepository->findAll();
+        self::assertCount(0, $books);
+
+        $querySettings = $this->bookRepository->createQuery()->getQuerySettings();
+        $querySettings->setRespectStoragePage(false);
+        $this->bookRepository->setDefaultQuerySettings($querySettings);
+
+        $bookDemand = new BookDemand();
+        $bookDemand->setTitle('XYZ');
+
+        $books = $this->bookRepository->findDemanded($bookDemand);
+        self::assertCount(0, $books);
     }
 }
