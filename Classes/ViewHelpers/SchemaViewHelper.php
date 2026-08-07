@@ -18,8 +18,6 @@ class SchemaViewHelper extends AbstractViewHelper
 {
     /**
      * Output is escaped already. We must not escape children, to avoid double encoding.
-     *
-     * @var bool
      */
     protected $escapeOutput = false;
 

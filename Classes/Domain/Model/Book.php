@@ -87,15 +87,6 @@ class Book extends AbstractEntity implements BookInterface
         $this->initStorageObjects();
     }
 
-    protected function initStorageObjects(): void
-    {
-        $this->categories = new ObjectStorage();
-        $this->files = new ObjectStorage();
-        $this->images = new ObjectStorage();
-        $this->relatedBooks = new ObjectStorage();
-        $this->relatedBooksFrom = new ObjectStorage();
-    }
-
     public function getTitle(): string
     {
         return $this->title;
@@ -222,4 +213,12 @@ class Book extends AbstractEntity implements BookInterface
         $this->metaDescription = $metaDescription;
     }
 
+    protected function initStorageObjects(): void
+    {
+        $this->categories = new ObjectStorage();
+        $this->files = new ObjectStorage();
+        $this->images = new ObjectStorage();
+        $this->relatedBooks = new ObjectStorage();
+        $this->relatedBooksFrom = new ObjectStorage();
+    }
 }

@@ -29,9 +29,9 @@ use TYPO3\TestingFramework\Core\Acceptance\Step\FrameSteps;
  */
 class Tester extends Actor
 {
-    use TesterActions;
-
     use FrameSteps;
+
+    use TesterActions;
 
     protected int $retryNum = 2;
 }

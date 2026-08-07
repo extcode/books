@@ -6,7 +6,7 @@ defined('TYPO3') or die();
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
-call_user_func(function () {
+(static function (): void {
     $_LLL_be = 'LLL:EXT:books/Resources/Private/Language/locallang_be.xlf';
 
     $pluginNames = [
@@ -23,7 +23,7 @@ call_user_func(function () {
     ];
 
     foreach ($pluginNames as $pluginName => $pluginConfig) {
-        $pluginSignature = 'books_' . strtolower($pluginName);
+        $pluginSignature = 'books_' . mb_strtolower($pluginName);
 
         $flexFormPath = 'EXT:books/Configuration/FlexForms/' . $pluginName . 'Plugin.xml';
         if (file_exists(GeneralUtility::getFileAbsFileName($flexFormPath))) {
@@ -42,4 +42,4 @@ call_user_func(function () {
             $flexFormPath
         );
     }
-});
+})();

@@ -7,6 +7,7 @@ namespace Extcode\Books\Tests\Unit\Domain\Model;
 use Extcode\Books\Domain\Model\Book;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
+use ReflectionProperty;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 #[CoversClass(Book::class)]
@@ -33,7 +34,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setTitleForStringSetsTitle(): void
     {
-        $this->setProperty($this->book, 'title', 'Book Title');
+        self::setProperty($this->book, 'title', 'Book Title');
 
         self::assertSame(
             'Book Title',
@@ -44,7 +45,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setSubtitleForStringSetsSubtitle(): void
     {
-        $this->setProperty($this->book, 'subtitle', 'Book Subtitle');
+        self::setProperty($this->book, 'subtitle', 'Book Subtitle');
 
         self::assertSame(
             'Book Subtitle',
@@ -64,7 +65,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setAuthorForStringSetsAuthor(): void
     {
-        $this->setProperty($this->book, 'author', 'Book Author');
+        self::setProperty($this->book, 'author', 'Book Author');
 
         self::assertSame(
             'Book Author',
@@ -84,7 +85,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setIllustratorForStringSetsIllustrator(): void
     {
-        $this->setProperty($this->book, 'illustrator', 'Book Illustrator');
+        self::setProperty($this->book, 'illustrator', 'Book Illustrator');
 
         self::assertSame(
             'Book Illustrator',
@@ -104,7 +105,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setEditorForStringSetsEditor(): void
     {
-        $this->setProperty($this->book, 'editor', 'Book Editor');
+        self::setProperty($this->book, 'editor', 'Book Editor');
 
         self::assertSame(
             'Book Editor',
@@ -124,7 +125,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setPublisherForStringSetsPublisher(): void
     {
-        $this->setProperty($this->book, 'publisher', 'Book Publisher');
+        self::setProperty($this->book, 'publisher', 'Book Publisher');
 
         self::assertSame(
             'Book Publisher',
@@ -144,7 +145,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setTranslatorForStringSetsTranslator(): void
     {
-        $this->setProperty($this->book, 'translator', 'Book Translator');
+        self::setProperty($this->book, 'translator', 'Book Translator');
 
         self::assertSame(
             'Book Translator',
@@ -164,7 +165,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setLanguageForStringSetsLanguage(): void
     {
-        $this->setProperty($this->book, 'language', 'Book Language');
+        self::setProperty($this->book, 'language', 'Book Language');
 
         self::assertSame(
             'Book Language',
@@ -184,7 +185,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setNumberOfPagesForStringSetsNumberOfPages(): void
     {
-        $this->setProperty($this->book, 'numberOfPages', 'Book NumberOfPages');
+        self::setProperty($this->book, 'numberOfPages', 'Book NumberOfPages');
 
         self::assertSame(
             'Book NumberOfPages',
@@ -204,7 +205,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setGenreForStringSetsGenre(): void
     {
-        $this->setProperty($this->book, 'genre', 'Book Genre');
+        self::setProperty($this->book, 'genre', 'Book Genre');
 
         self::assertSame(
             'Book Genre',
@@ -224,7 +225,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setIsbn10ForStringSetsIsbn10(): void
     {
-        $this->setProperty($this->book, 'isbn10', 'Book Isbn10');
+        self::setProperty($this->book, 'isbn10', 'Book Isbn10');
 
         self::assertSame(
             'Book Isbn10',
@@ -244,7 +245,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setIsbn13ForStringSetsIsbn13(): void
     {
-        $this->setProperty($this->book, 'isbn13', 'Book Isbn13');
+        self::setProperty($this->book, 'isbn13', 'Book Isbn13');
 
         self::assertSame(
             'Book Isbn13',
@@ -264,7 +265,7 @@ class BookTest extends UnitTestCase
     #[Test]
     public function setIssnForStringSetsIssn(): void
     {
-        $this->setProperty($this->book, 'issn', 'Book Issn');
+        self::setProperty($this->book, 'issn', 'Book Issn');
 
         self::assertSame(
             'Book Issn',
@@ -272,9 +273,9 @@ class BookTest extends UnitTestCase
         );
     }
 
-    private function setProperty(object $instance, string $propertyName, mixed $propertyValue): void
+    private static function setProperty(object $instance, string $propertyName, mixed $propertyValue): void
     {
-        $reflection = new \ReflectionProperty($instance, $propertyName);
+        $reflection = new ReflectionProperty($instance, $propertyName);
         $reflection->setValue($instance, $propertyValue);
     }
 }

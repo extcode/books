@@ -13,6 +13,7 @@ namespace Extcode\Books\ViewHelpers\Link;
 
 use Extcode\Books\Domain\Model\Book;
 use Psr\Http\Message\ServerRequestInterface;
+use RuntimeException;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder;
@@ -60,7 +61,7 @@ class BookViewHelper extends AbstractTagBasedViewHelper
         $renderingContext->hasAttribute(ServerRequestInterface::class);
         $request = $renderingContext->getAttribute(ServerRequestInterface::class);
         if (!$request instanceof RequestInterface) {
-            throw new \RuntimeException(
+            throw new RuntimeException(
                 'ViewHelper f:link.action can be used only in extbase context and needs a request implementing extbase RequestInterface.',
                 1639818540
             );
@@ -70,16 +71,16 @@ class BookViewHelper extends AbstractTagBasedViewHelper
         $controller = $this->arguments['controller'];
         $extensionName = $this->arguments['extensionName'];
         $pluginName = $this->arguments['pluginName'];
-        $pageUid = (int)$this->arguments['pageUid'] ?: null;
-        $pageType = (int)$this->arguments['pageType'];
-        $noCache = (bool)$this->arguments['noCache'];
-        $section = (string)$this->arguments['section'];
-        $format = (string)$this->arguments['format'];
-        $linkAccessRestrictedPages = (bool)$this->arguments['linkAccessRestrictedPages'];
-        $additionalParams = (array)$this->arguments['additionalParams'];
-        $absolute = (bool)$this->arguments['absolute'];
-        $addQueryString = (bool)$this->arguments['addQueryString'];
-        $argumentsToBeExcludedFromQueryString = (array)$this->arguments['argumentsToBeExcludedFromQueryString'];
+        $pageUid = (int) $this->arguments['pageUid'] ?: null;
+        $pageType = (int) $this->arguments['pageType'];
+        $noCache = (bool) $this->arguments['noCache'];
+        $section = (string) $this->arguments['section'];
+        $format = (string) $this->arguments['format'];
+        $linkAccessRestrictedPages = (bool) $this->arguments['linkAccessRestrictedPages'];
+        $additionalParams = (array) $this->arguments['additionalParams'];
+        $absolute = (bool) $this->arguments['absolute'];
+        $addQueryString = (bool) $this->arguments['addQueryString'];
+        $argumentsToBeExcludedFromQueryString = (array) $this->arguments['argumentsToBeExcludedFromQueryString'];
 
         $book = $this->arguments['book'];
 
@@ -113,7 +114,7 @@ class BookViewHelper extends AbstractTagBasedViewHelper
         ;
 
         if (MathUtility::canBeInterpretedAsInteger($pageUid)) {
-            $uriBuilder->setTargetPageUid((int)$pageUid);
+            $uriBuilder->setTargetPageUid((int) $pageUid);
         }
 
         $uri = $uriBuilder->uriFor($action, $parameters, $controller, $extensionName, $pluginName);
@@ -123,6 +124,7 @@ class BookViewHelper extends AbstractTagBasedViewHelper
         $this->tag->addAttribute('href', $uri);
         $this->tag->setContent($this->renderChildren());
         $this->tag->forceClosingTag(true);
+
         return $this->tag->render();
     }
 }
