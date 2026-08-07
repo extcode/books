@@ -68,18 +68,12 @@ class BookRepositoryTest extends FunctionalTestCase
     public function findAllRecords(): void
     {
         $books = $this->bookRepository->findAll();
-        self::assertSame(
-            0,
-            $books->count()
-        );
+        self::assertCount(0, $books);
 
         $querySettings = $this->bookRepository->createQuery()->getQuerySettings();
         $querySettings->setRespectStoragePage(false);
         $this->bookRepository->setDefaultQuerySettings($querySettings);
         $books = $this->bookRepository->findAll();
-        self::assertSame(
-            3,
-            $books->count()
-        );
+        self::assertCount(3, $books);
     }
 }
