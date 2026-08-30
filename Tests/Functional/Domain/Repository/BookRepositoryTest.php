@@ -77,7 +77,7 @@ class BookRepositoryTest extends FunctionalTestCase
         $querySettings->setRespectStoragePage(false);
         $this->bookRepository->setDefaultQuerySettings($querySettings);
         $books = $this->bookRepository->findAll();
-        self::assertCount(3, $books);
+        self::assertCount(6, $books);
     }
 
     #[Test]
@@ -109,7 +109,7 @@ class BookRepositoryTest extends FunctionalTestCase
         $this->bookRepository->setDefaultQuerySettings($querySettings);
 
         $bookDemand = new BookDemand();
-        $bookDemand->setTitle('oo');
+        $bookDemand->setTitle('Spiele');
 
         $books = $this->bookRepository->findDemanded($bookDemand);
         self::assertCount(1, $books);
@@ -131,5 +131,66 @@ class BookRepositoryTest extends FunctionalTestCase
 
         $books = $this->bookRepository->findDemanded($bookDemand);
         self::assertCount(0, $books);
+    }
+
+    #[Test]
+    public function findDemandedRecordsByMatchingCategory(): void
+    {
+        $books = $this->bookRepository->findAll();
+        self::assertCount(0, $books);
+
+        $querySettings = $this->bookRepository->createQuery()->getQuerySettings();
+        $querySettings->setRespectStoragePage(false);
+        $this->bookRepository->setDefaultQuerySettings($querySettings);
+
+        $bookdemand = new BookDemand();
+        $bookdemand->setcategories(['101']);
+
+        $books = $this->bookRepository->findDemanded($bookdemand);
+        self::assertcount(1, $books);
+
+        $bookdemand = new BookDemand();
+        $bookdemand->setcategories(['104']);
+
+        $books = $this->bookRepository->findDemanded($bookdemand);
+        self::assertcount(4, $books);
+
+        $bookdemand = new BookDemand();
+        $bookdemand->setcategories(['101', '104']);
+
+        $books = $this->bookRepository->findDemanded($bookdemand);
+        self::assertcount(5, $books);
+    }
+
+    #[Test]
+    public function findDemandedRecordsByMatchingCategories(): void
+    {
+        $books = $this->bookRepository->findAll();
+        self::assertCount(0, $books);
+
+        $querySettings = $this->bookRepository->createQuery()->getQuerySettings();
+        $querySettings->setRespectStoragePage(false);
+        $this->bookRepository->setDefaultQuerySettings($querySettings);
+
+        $bookdemand = new BookDemand();
+        $bookdemand->setcategories(['1011']);
+
+        $books = $this->bookRepository->findDemanded($bookdemand);
+        self::assertcount(1, $books);
+
+        self::assertSame(2, $books[0]->getUid());
+        self::assertSame('1793', $books[0]->getTitle());
+
+        $bookdemand = new BookDemand();
+        $bookdemand->setcategories(['1032', '1035']);
+
+        $books = $this->bookRepository->findDemanded($bookdemand);
+        self::assertcount(1, $books);
+
+        $bookdemand = new BookDemand();
+        $bookdemand->setcategories(['1011', '1032', '1035']);
+
+        $books = $this->bookRepository->findDemanded($bookdemand);
+        self::assertcount(2, $books);
     }
 }
