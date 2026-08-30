@@ -38,7 +38,7 @@ class BookRepository extends Repository
                 $categoryConstraints[] = $query->equals('category', $category);
                 $categoryConstraints[] = $query->contains('categories', $category);
             }
-            $constraints = $query->logicalOr(...$categoryConstraints);
+            $constraints[] = $query->logicalOr(...$categoryConstraints);
         }
 
         if (!empty($constraints)) {
