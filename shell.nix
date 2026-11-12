@@ -32,11 +32,12 @@ let
     name = "project-phpstan";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      ./.Build/bin/phpstan analyse -c Build/phpstan.neon --memory-limit 256M
+      "$PROJECT_ROOT/Build/Scripts/phpstan.sh"
     '';
   };
 
@@ -44,11 +45,12 @@ let
     name = "project-cgl";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      ./.Build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php -v --dry-run --diff
+      "$PROJECT_ROOT/Build/Scripts/cgl.sh"
     '';
   };
 
@@ -56,11 +58,12 @@ let
     name = "project-cgl-fix";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      ./.Build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
+      "$PROJECT_ROOT/Build/Scripts/cgl.sh" --fix
     '';
   };
 
@@ -68,11 +71,12 @@ let
     name = "project-lint-php";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      find ./*.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+      "$PROJECT_ROOT/Build/Scripts/lint-php.sh"
     '';
   };
 
@@ -91,24 +95,26 @@ let
   projectTestUnit = pkgs.writeShellApplication {
     name = "project-test-unit";
     runtimeInputs = [
+      composer
       php
       projectInstall
     ];
     text = ''
       project-install
-      ./.Build/bin/phpunit -c Build/UnitTests.xml
+      "$PROJECT_ROOT/Build/Scripts/phpunit.sh" unit
     '';
   };
 
   projectTestFunctional = pkgs.writeShellApplication {
     name = "project-test-functional";
     runtimeInputs = [
+      composer
       php
       projectInstall
     ];
     text = ''
       project-install
-      ./.Build/bin/phpunit -c Build/FunctionalTests.xml
+      "$PROJECT_ROOT/Build/Scripts/phpunit.sh" functional
     '';
   };
 
