@@ -112,7 +112,7 @@ let
     ];
 
     text = ''
-      ./.Build/bin/typoscript-lint -c Build/typoscriptlint.yaml Configuration
+      "$PROJECT_ROOT/Build/Scripts/lint-typoscript.sh"
     '';
   };
 
