@@ -31,8 +31,8 @@
         }
     },
     "config": {
-        "bin-dir": ".build/bin",
-        "vendor-dir": ".build/vendor",
+        "bin-dir": ".Build/bin",
+        "vendor-dir": ".Build/vendor",
         "allow-plugins": {
             "a9f/fractor-extension-installer": true,
             "phpstan/extension-installer": true,
@@ -45,7 +45,7 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "books",
-            "web-dir": ".build/public"
+            "web-dir": ".Build/public"
         }
     },
     "require": {

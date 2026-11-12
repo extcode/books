@@ -195,7 +195,7 @@ return (new Config())
             ->in(__DIR__ . '/../')
             ->exclude(
                 [
-                    '.build/',
+                    '.Build/',
                     'var/',
                     'Tests/Acceptance/Support/_generated',
                 ]
