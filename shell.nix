@@ -142,18 +142,7 @@ let
     ];
     text = ''
       project-install
-
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance"
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance-logs"
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance-reports"
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance-sqlite-dbs"
-
-      export INSTANCE_PATH="$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance"
-
-      ./.Build/bin/codecept run
-
-      pgrep -f "php -S" | xargs -r kill
-      pgrep -f "geckodriver" | xargs -r kill
+      "$PROJECT_ROOT/Build/Scripts/acceptance.sh" "$@"
     '';
   };
 
@@ -161,6 +150,9 @@ in pkgs.mkShell {
   name = "TYPO3 Extension extcode/books";
   buildInputs = [
     pkgs.cacert
+    pkgs.firefox
+    pkgs.geckodriver
+    pkgs.procps
     php
     composer
     projectInstall
