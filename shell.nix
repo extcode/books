@@ -32,11 +32,12 @@ let
     name = "project-cgl";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      ./.Build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php -v --dry-run --diff
+      "$PROJECT_ROOT/Build/Scripts/cgl.sh"
     '';
   };
 
@@ -44,11 +45,12 @@ let
     name = "project-cgl-fix";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      ./.Build/bin/php-cs-fixer fix --config=Build/.php-cs-fixer.dist.php
+      "$PROJECT_ROOT/Build/Scripts/cgl.sh" --fix
     '';
   };
 
@@ -56,11 +58,12 @@ let
     name = "project-lint";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      find ./*.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+      "$PROJECT_ROOT/Build/Scripts/lint-php.sh"
     '';
   };
 
@@ -80,35 +83,38 @@ let
     name = "project-phpstan";
 
     runtimeInputs = [
+      composer
       php
     ];
 
     text = ''
-      ./.Build/bin/phpstan analyse -c Build/phpstan.neon --memory-limit 256M
+      "$PROJECT_ROOT/Build/Scripts/phpstan.sh"
     '';
   };
 
   projectTestUnit = pkgs.writeShellApplication {
     name = "project-test-unit";
     runtimeInputs = [
+      composer
       php
       projectInstall
     ];
     text = ''
       project-install
-      ./.Build/bin/phpunit -c Build/phpunit.xml.dist --testsuite unit --display-deprecations --display-warnings --display-errors
+      "$PROJECT_ROOT/Build/Scripts/phpunit.sh" unit
     '';
   };
 
   projectTestFunctional = pkgs.writeShellApplication {
     name = "project-test-functional";
     runtimeInputs = [
+      composer
       php
       projectInstall
     ];
     text = ''
       project-install
-      ./.Build/bin/phpunit -c Build/phpunit.xml.dist --testsuite functional --display-deprecations --display-warnings --display-errors
+      "$PROJECT_ROOT/Build/Scripts/phpunit.sh" functional
     '';
   };
 
@@ -136,18 +142,7 @@ let
     ];
     text = ''
       project-install
-
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance"
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance-logs"
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance-reports"
-      mkdir -p "$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance-sqlite-dbs"
-
-      export INSTANCE_PATH="$PROJECT_ROOT/.Build/public/typo3temp/var/tests/acceptance"
-
-      ./.Build/bin/codecept run
-
-      pgrep -f "php -S" | xargs -r kill
-      pgrep -f "geckodriver" | xargs -r kill
+      "$PROJECT_ROOT/Build/Scripts/acceptance.sh" "$@"
     '';
   };
 
@@ -155,6 +150,9 @@ in pkgs.mkShell {
   name = "TYPO3 Extension extcode/books";
   buildInputs = [
     pkgs.cacert
+    pkgs.firefox
+    pkgs.geckodriver
+    pkgs.procps
     php
     composer
     projectInstall
