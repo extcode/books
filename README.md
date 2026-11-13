@@ -2,6 +2,8 @@
 
 Books provides an own data storage for books, magazines and journals. Books can be offered via a list and detail view.
 
+Read the [official extension documentation](https://docs.typo3.org/p/extcode/books/main/en-us/) for installation, configuration and usage.
+
 ## 1. Features
 
 -
