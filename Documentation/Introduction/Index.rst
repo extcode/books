@@ -12,5 +12,6 @@ Books can be displayed via a teaser, list and detail view.
    :maxdepth: 5
    :titlesonly:
 
+   SupportedVersions/Index
    Support/Index
    Sponsoring/Index

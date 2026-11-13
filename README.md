@@ -30,10 +30,8 @@ Sometimes minor versions also result in minor adjustments to own templates or co
 
 ## 3.1 Compatibility and supported Versions
 
-| Books | TYPO3 | PHP  | Support/Development                  |
-|-------|-------|------|--------------------------------------|
-| 2.x.x | 14.2  | 8.2+ | Features, Bugfixes, Security Updates |
-| 1.x.x | 13.4  | 8.2+ | Bugfixes, Security Updates           |
+The compatibility with TYPO3 and PHP and the support status of all versions are listed in the
+[official extension documentation in chapter supported versions](https://docs.typo3.org/p/extcode/books/main/en-us/Introduction/SupportedVersions/Index.html).
 
 If you need extended support for features and bug fixes outside of the currently supported versions,
 we are happy to offer paid services.
