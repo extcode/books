@@ -2,7 +2,7 @@
 
 Books provides an own data storage for books, magazines and journals. Books can be offered via a list and detail view.
 
-Read the [official extension documentation](https://docs.typo3.org/p/extcode/books/main/en-us/) for installation, configuration and usage.
+Read the [extension documentation](https://docs.typo3.org/p/extcode/books/main/en-us/).
 
 ## 1. Features
 
@@ -12,21 +12,7 @@ Read the [official extension documentation](https://docs.typo3.org/p/extcode/boo
 
 ## 2. Installation
 
-### 2.1 Installation
-
-#### Installation using Composer
-
-The recommended way to install the extension is by using Composer. In your Composer based TYPO3 project root, just do `composer require extcode/books`. 
-
-#### Installation as extension from TYPO3 Extension Repository (TER)
-
-Download and install the extension with the extension manager module.
-
-### 2.2 Update and Upgrade
-
-**Attention:** Before updating to a new minor version or upgrading to a new major version, be sure to check the
-changelog section in the documentation.
-Sometimes minor versions also result in minor adjustments to own templates or configurations.
+Please have a look into the [installation chapter of the documentation](https://docs.typo3.org/p/extcode/books/main/en-us/Administrator/Installation/Index.html).
 
 ## 3. Versions
 
@@ -41,6 +27,10 @@ we are happy to offer paid services.
 ### 3.2 Changelog
 
 Please have a look into the [official extension documentation in changelog chapter](https://docs.typo3.org/p/extcode/books/main/en-us/Changelog/Index.html)
+
+**Attention:** Before updating to a new minor version or upgrading to a new major version, be sure to check the
+changelog section in the documentation.
+Sometimes minor versions also result in minor adjustments to own templates or configurations.
 
 ## 4. Sponsoring
 
