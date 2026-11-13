@@ -6,7 +6,7 @@ email, or any other method with the owners of this repository before making a ch
 ## Getting Started
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
-* Submit a ticket for your [issue](https://github.com/extcode/Books/issues), assuming one does not already exist.
+* Submit a ticket for your [issue](https://github.com/extcode/books/issues), assuming one does not already exist.
   * Clearly describe the issue including steps to reproduce when it is a bug.
 * Fork the repository on GitHub
 
