@@ -14,7 +14,7 @@ Books provides an own data storage for books, magazines and journals. Books can 
 
 #### Installation using Composer
 
-The recommended way to install the extension is by using [Composer][2]. In your Composer based TYPO3 project root, just do `composer require extcode/books`. 
+The recommended way to install the extension is by using Composer. In your Composer based TYPO3 project root, just do `composer require extcode/books`. 
 
 #### Installation as extension from TYPO3 Extension Repository (TER)
 
@@ -22,13 +22,13 @@ Download and install the extension with the extension manager module.
 
 ### 2.2 Update and Upgrade
 
-**Attention**, Before updating to a new minor version or upgrading to a new major version, be sure to check the
+**Attention:** Before updating to a new minor version or upgrading to a new major version, be sure to check the
 changelog section in the documentation.
 Sometimes minor versions also result in minor adjustments to own templates or configurations.
 
-## 3. Administration
+## 3. Versions
 
-## 3.1 Compatibility and supported Versions
+### 3.1 Compatibility and supported versions
 
 The compatibility with TYPO3 and PHP and the support status of all versions are listed in the
 [official extension documentation in chapter supported versions](https://docs.typo3.org/p/extcode/books/main/en-us/Introduction/SupportedVersions/Index.html).
@@ -36,7 +36,7 @@ The compatibility with TYPO3 and PHP and the support status of all versions are 
 If you need extended support for features and bug fixes outside of the currently supported versions,
 we are happy to offer paid services.
 
-### 3.2. Changelog
+### 3.2 Changelog
 
 Please have a look into the [official extension documentation in changelog chapter](https://docs.typo3.org/p/extcode/books/main/en-us/Changelog/Index.html)
 
@@ -45,6 +45,3 @@ Please have a look into the [official extension documentation in changelog chapt
 * Ask for an invoice.
 * [GitHub Sponsors](https://github.com/sponsors/extcode)
 * [PayPal.Me](https://paypal.me/extcart)
-
-[1]: https://docs.typo3.org/typo3cms/extensions/books/
-[2]: https://getcomposer.org/
