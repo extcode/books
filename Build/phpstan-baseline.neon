@@ -5,9 +5,3 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: ../Classes/Controller/ActionController.php
-
-		-
-			message: '#^Access to an undefined property Extcode\\Books\\Hooks\\DataHandler\:\:\$cacheManager\.$#'
-			identifier: property.notFound
-			count: 1
-			path: ../Classes/Hooks/DataHandler.php

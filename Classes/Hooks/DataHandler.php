@@ -11,13 +11,18 @@ namespace Extcode\Books\Hooks;
  * LICENSE file that was distributed with this source code.
  */
 
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+use TYPO3\CMS\Core\Cache\CacheManager;
+
 /**
  * Hook into tcemain which is used to show preview of books item
  */
+#[Autoconfigure(public: true)]
 class DataHandler
 {
-    public function __construct()
-    {
+    public function __construct(
+        private readonly CacheManager $cacheManager,
+    ) {
     }
 
     /**
@@ -35,9 +40,8 @@ class DataHandler
                 $cacheTagsToFlush[] = 'tx_books_book_' . $params['uid_page'];
             }
 
-            $cacheManager = $this->cacheManager;
             foreach ($cacheTagsToFlush as $cacheTag) {
-                $cacheManager->flushCachesInGroupByTag('pages', $cacheTag);
+                $this->cacheManager->flushCachesInGroupByTag('pages', $cacheTag);
             }
         }
     }
