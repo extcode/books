@@ -9,6 +9,15 @@
    :local:
    :depth: 1
 
+1.0.4
+-----
+
+Tasks
+~~~~~
+
+*  Check spelling with typos (`#35 <https://github.com/extcode/books/pull/35>`__)
+*  List the changes of each release in the changelog
+
 1.0.3
 -----
 

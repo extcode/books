@@ -9,6 +9,14 @@
    :local:
    :depth: 1
 
+2.0.4
+-----
+
+Tasks
+~~~~~
+
+*  List the changes of each release in the changelog
+
 2.0.3
 -----
 
